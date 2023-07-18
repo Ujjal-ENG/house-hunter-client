@@ -1,0 +1,30 @@
+{
+    "properties": [
+        {
+            "name": "Cozy Apartment",
+            "address": "123 Main Street",
+            "city": "Exampleville",
+            "bedrooms": 2,
+            "bathrooms": 1,
+            "roomSize": "800 sqft",
+            "picture": "https://images.pexels.com/photos/2566860/pexels-photo-2566860.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "availabilityDate": "2023-08-01",
+            "rentPerMonth": 1500,
+            "phoneNumber": "+880 1XXX-XXXXXX",
+            "description": "A cozy apartment located in a quiet neighborhood. Perfect for a small family or working professionals."
+        },
+        {
+            "name": "Spacious House",
+            "address": "456 Elm Street",
+            "city": "Sampletown",
+            "bedrooms": 4,
+            "bathrooms": 2,
+            "roomSize": "2000 sqft",
+            "picture": "https://images.pexels.com/photos/950058/pexels-photo-950058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "availabilityDate": "2023-09-15",
+            "rentPerMonth": 2500,
+            "phoneNumber": "+880 1XXX-XXXXXX",
+            "description": "A spacious house with modern amenities and a large backyard. Ideal for a growing family."
+        }
+    ]
+}
