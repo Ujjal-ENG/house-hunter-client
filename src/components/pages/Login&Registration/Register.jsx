@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -5,16 +6,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable react/jsx-closing-bracket-location */
+import axios from 'axios';
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles.css';
 
 const Register = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const location = useLocation();
-    const from = location?.state?.from?.pathname || '/';
     const handleSubmit = async (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -23,8 +23,23 @@ const Register = () => {
         const password = e.target.password.value;
         const number = e.target.number.value;
         const userInput = { name, role, email, password, number };
+        try {
+            setLoading(true);
+            const { data } = await axios.post('http://localhost:8080/user', userInput);
+            if (data.success) {
+                const { data } = await axios.post('http://localhost:8080/jwt', { email });
+                localStorage.setItem('token', data?.token);
+                toast.success('Successfully Registered!!');
+                setLoading(false);
+                navigate('/login');
+            }
+        } catch (error) {
+            toast.error(`Error Occured ${error}`);
+            setLoading(false);
+            console.log(error);
+        }
     };
-
+    console.log(loading);
     return (
         <section className="bg-white container h-screen">
             <div className="grid grid-cols-1 lg:grid-cols-2">

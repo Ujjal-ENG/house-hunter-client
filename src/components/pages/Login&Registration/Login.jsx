@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
+import axios from 'axios';
 import './styles.css';
 
 const Login = () => {
@@ -25,8 +26,12 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const userInput = { email, password };
         setLoading(true);
+
         try {
+            const { data } = await axios.post('http://localhost:8080/login', userInput);
+            console.log(data);
             navigate(from, { replace: true });
             toast.success('User is Logged in Successfully!!!');
             setLoading(false);
@@ -34,20 +39,6 @@ const Login = () => {
             console.log(error);
             setLoading(false);
             toast.error('There was an error while signIn user!!');
-        }
-    };
-    const handleGoogleSignIn = async () => {
-        setLoading(true);
-        const role = 'user';
-        try {
-            navigate(from, { replace: true });
-            toast.success('Successfully Logged In');
-
-            setLoading(false);
-        } catch (error) {
-            console.log(error);
-            toast.error('There was an error while signIn user!!');
-            setLoading(false);
         }
     };
 

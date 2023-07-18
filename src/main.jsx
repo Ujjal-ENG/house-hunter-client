@@ -1,7 +1,14 @@
+/* eslint-disable comma-dangle */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
 import './index.css';
 import { router } from './routes/App.Routes';
 
-ReactDOM.createRoot(document.getElementById('root')).render(<RouterProvider router={router} />);
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <>
+        <Toaster />
+        <RouterProvider router={router} />
+    </>
+);
