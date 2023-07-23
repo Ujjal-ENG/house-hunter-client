@@ -6,12 +6,15 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const Navbar = () => {
     const [theme, setTheme] = useState('light');
+    const [userInfo, setUserInfo] = useContext(AuthContext);
+    console.log(userInfo);
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);

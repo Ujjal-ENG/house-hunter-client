@@ -8,16 +8,18 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/no-unescaped-entities */
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
+import { AuthContext } from '../../context/AuthProvider';
 import './styles.css';
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
     const location = useLocation();
+    const [userInfo, setUserInfo] = useContext(AuthContext);
     const from = location?.state?.from?.pathname || '/';
 
     const navigate = useNavigate();
@@ -28,10 +30,13 @@ const Login = () => {
         const password = e.target.password.value;
         const userInput = { email, password };
         setLoading(true);
-
         try {
             const { data } = await axios.post('http://localhost:8080/login', userInput);
-            console.log(data);
+            setUserInfo(data);
+            if (data.success) {
+                const { data } = await axios.post('http://localhost:8080/jwt', { email });
+                localStorage.setItem('token', data?.token);
+            }
             navigate(from, { replace: true });
             toast.success('User is Logged in Successfully!!!');
             setLoading(false);

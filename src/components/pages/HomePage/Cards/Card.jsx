@@ -6,10 +6,10 @@ import ImageZoom from '../../../layouts/shared/ImageZoomHover';
 const Card = ({ data }) => {
     return (
         <div className="pt-20">
-            <div className="card lg:card-side bg-base-100 shadow-xl">
+            <div className="card lg:card-side bg-base-100 shadow-xl h-96">
                 <figure>
                     <div>
-                        <ImageZoom width="350px" height="100%">
+                        <ImageZoom width="400px" height="100%">
                             <img src={data.picture} alt="house-picture" className="w-full h-full hover:scale-125 duration-300 ease-in" />
                         </ImageZoom>
                     </div>

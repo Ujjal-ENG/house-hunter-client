@@ -27,7 +27,7 @@ const useAxiosSecure = () => {
             async (error) => {
                 if (error.response && (error.response.status === 401 || error.response.status === 403)) {
                     // TODO: letter i will fixed it
-                    localStorage.removeItem();
+                    localStorage.removeItem('token');
                     navigate('/login');
                 }
                 return Promise.reject(error);
